@@ -1,0 +1,129 @@
+// =========================
+// ======= Project =========
+// =========================
+
+Project
+{
+    Members:
+        clip                <- Just a single clip for first version
+        ?currentTool
+        ?allPaintTools[]    <- The whole tool set, where there are standard tools + user tools, that could be imported tools, or whatever
+
+    Methods:
+        AddPaintTool( PaintTool )
+        SetCurrentPaintTool( ?Index )
+}
+
+
+// =========================
+// ===== PaintTools ========
+// =========================
+
+
+PaintTool : Protocol?
+{
+    Methods:
+        DrawPoint
+        DrawLine
+        DrawCircle
+        DrawPath
+}
+
+
+SimpleBrush : PaintTool
+{
+    Members:
+        size
+        opacity
+        color
+
+    Methods:
+        DrawPoint
+        DrawLine
+        DrawCircle
+        DrawPath
+}
+
+
+// =========================
+// ========= Clip ==========
+// =========================
+
+
+Clip
+{
+    Members:
+        layer[]
+        currentFrame
+
+    Methods:
+        AddLayer( Layer.Type )
+        RemoveLayer( Index )
+}
+
+
+// =========================
+// ========= Layer =========
+// =========================
+
+
+Layer : Protocol
+{
+    Members:
+
+    Methods:
+}
+
+
+LayerAnimation : Layer
+{
+    Members:
+        instances[]
+        ?thumbnail   <- In memory so it's easy/fast access
+        blendingMode
+        opacity
+        isVisible
+        isAlphaLocked
+        isAlphaMask
+
+    Methods:
+        AddInstance( FrameWhere )
+        RemoveInstance( Index )
+        Render( BufferToRenderTo )
+}
+
+
+LayerFolder : Layer
+{
+    Members:
+        layers[]
+
+    Methods:
+        AddLayer( Layer )
+        RemoveLayer( Index )
+}
+
+
+// =========================
+// ======= Instance ========
+// =========================
+
+
+Instance
+{
+    Members:
+        startingFrame
+        endingFrame
+        imageData <- the pixels
+
+    Methods:
+        setStartingFrame( startFrame )
+        setEndingFrame( endFrame )
+        setDuration( duration )
+}
+
+
+
+
+
+

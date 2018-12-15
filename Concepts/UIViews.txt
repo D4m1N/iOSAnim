@@ -1,0 +1,113 @@
+// =========================
+// ======== Canvas =========
+// =========================
+
+
+CanvasArea : DrawableView
+{
+    Members:
+        ?DisplayBitmap <- Where we render each layer off screen, and then, render that in the draw method
+
+
+    Methods:
+        Render
+
+
+    Events:
+        stylusDown: prepare drawing
+        stylusMove: draw
+        stylusUp:   finish drawing
+}
+
+
+DisplayView : ScrollView
+{
+    Members:
+        CanvasArea
+
+
+    Methods:
+        FitToView
+
+
+    Events:
+        pinch: zoom
+        doubleFingerPan: pan
+        ddoubleFingerRotation: rotation
+}
+
+
+// =========================
+// ======= TimeLine ========
+// =========================
+
+
+Timeline : ScrollView
+{
+    Members:
+        Layers
+
+
+    Methods:
+
+
+    Events:
+        doubleFingerPan: pan vertical <- should be done by scroll view
+}
+
+
+LayerLeftView : View
+{
+    Member:
+        Layer
+
+
+    Methods:
+
+
+    Events:
+        longTouch: show layer properties
+}
+
+
+LayerRightView : View
+{
+    Member:
+        Layer
+
+
+    Methods:
+
+
+    Events:
+        tap: set current frame to tap position
+        pinch: timeline zoom
+        doubleFingerPan: pan horizontal
+}
+
+
+LayerLeftViewAnimation : LayerLeftView
+{
+    Member:
+        LayerAnimation
+
+
+    Methods:
+
+
+    Events:
+}
+
+
+LayerRightViewAnimation : LayerRightView
+{
+    Member:
+        LayerAnimation
+
+
+    Methods:
+
+
+    Events:
+
+}
