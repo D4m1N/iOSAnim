@@ -111,3 +111,23 @@ LayerRightViewAnimation : LayerRightView
     Events:
 
 }
+
+
+InstanceView : SimpleView
+{
+    Members:
+        Instance
+
+
+    Methods:
+
+
+    Events:
+        bottomRightButtonPress: prepare instance length to increase + end frame to change
+        bottomRightButtonMove: increase instance length + change ned frame
+        topLeftButtonPress: prepare instance length to increase / starting frame to change
+        topLeftButtonMove: increase instance length + change starting frame
+
+
+    Contains 2 buttons, that does instance timing manipulations
+}
